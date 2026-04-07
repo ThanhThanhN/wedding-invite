@@ -8,7 +8,7 @@ export function FamilySection() {
           <br />
           Bà: Đỗ Thị Vân
         </p>
-        <p className="address">Xã Vĩnh Lại, Tỉnh Hải Phòng</p>
+        <p className="address">Vĩnh Lại, Hải Phòng</p>
       </div>
       <div className="family-divider">♥</div>
       <div className="family-card">
@@ -18,7 +18,7 @@ export function FamilySection() {
           <br />
           Bà: Đặng Thị Thủy
         </p>
-        <p className="address">Ỷ La, Phường Dương Nội, Quận Hà Đông, Hà Nội</p>
+        <p className="address">Dương Nội, Hà Nội</p>
       </div>
     </section>
   );

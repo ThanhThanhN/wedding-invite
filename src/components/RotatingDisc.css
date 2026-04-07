@@ -9,12 +9,14 @@
   align-items: center;
   justify-content: center;
   padding: 0;
-  transition: transform 0.2s ease;
+  transition: all 0.3s ease;
   margin: 0 4px;
+  animation: floatUp 3s ease-in-out infinite;
 }
 
 .rotating-disc:hover {
-  transform: scale(1.1);
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 12px rgba(212, 116, 90, 0.5));
 }
 
 .disc-icon {
@@ -67,6 +69,16 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+@keyframes floatUp {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes glow {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(212, 116, 90, 0.3)); }
+  50% { filter: drop-shadow(0 0 16px rgba(212, 116, 90, 0.6)); }
 }
 
 /* Mobile responsive */

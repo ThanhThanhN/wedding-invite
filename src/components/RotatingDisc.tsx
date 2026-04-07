@@ -1,17 +1,63 @@
-import { useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
+import musicFile from '../assets/music.mp3';
 import './RotatingDisc.css';
 
-const EMBED_SRC =
-  'https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/asksock/beo-dat-may-troi-thuy-chi-ost-nguoi-vo-cuoi-cung&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=false';
+const AUDIO_SRC = musicFile;
 
 export function RotatingDisc() {
   const [isPlaying, setIsPlaying] = useState(true);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    // Autoplay muted to keep disc rotating
+    audio.muted = true;
+    audio.play().catch(() => {
+      // Ignore - autoplay muted often fails but that's ok
+    });
+
+    // Listen to audio events to sync state
+    const handlePlay = () => {
+      setIsPlaying(true);
+    };
+
+    const handlePause = () => {
+      setIsPlaying(false);
+    };
+
+    const handleEnded = () => {
+      // Loop will auto-restart, just make sure we're still "playing"
+      setIsPlaying(true);
+    };
+
+    audio.addEventListener('play', handlePlay);
+    audio.addEventListener('pause', handlePause);
+    audio.addEventListener('ended', handleEnded);
+
+    return () => {
+      audio.removeEventListener('play', handlePlay);
+      audio.removeEventListener('pause', handlePause);
+      audio.removeEventListener('ended', handleEnded);
+    };
+  }, []);
 
   const toggleMusic = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    
     if (isPlaying) {
+      audio.pause();
       setIsPlaying(false);
     } else {
-      setIsPlaying(true);
+      // Unmute and play on user click
+      audio.muted = false;
+      audio.play().catch((err) => {
+        console.log('Play failed:', err);
+      }).then(() => {
+        setIsPlaying(true);
+      });
     }
   };
 
@@ -25,24 +71,17 @@ export function RotatingDisc() {
         <span className="disc-icon" aria-hidden="true" />
       </button>
 
-      {isPlaying && (
-        <iframe
-          title="SoundCloud wedding music"
-          src={EMBED_SRC}
-          width="320"
-          height="120"
-          allow="autoplay; encrypted-media"
-          loading="eager"
-          style={{
-            position: 'fixed',
-            left: '-9999px',
-            bottom: 0,
-            opacity: 0,
-            pointerEvents: 'none',
-            border: 0,
-          }}
-        />
-      )}
+      <audio
+        ref={audioRef}
+        autoPlay
+        muted
+        loop
+        preload="auto"
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+      >
+        <source src={AUDIO_SRC} type="audio/mpeg" />
+      </audio>
     </>
   );
 }
