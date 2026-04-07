@@ -1,8 +1,20 @@
 import { CalendarGrid } from './CalendarGrid';
+import nhacohyBanner from '../assets/nhacohybanner.jpg';
 
 export function NhaCoHySection({ groomName, brideName }: { groomName: string; brideName: string }) {
   return (
-    <section className="section nha-co-hy">
+    <section className="section nha-co-hy" style={{
+      backgroundImage: `url(${nhacohyBanner})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundAttachment: "scroll",
+      backgroundRepeat: "no-repeat",
+      minHeight: "800px",
+      display: "flex",
+      flexDirection: "column",
+      // justifyContent: "center",
+      alignItems: "center",
+    }}>
       <div className="hy-deco">♥</div>
       <h2 className="hy-title script">Nhà Có Hỷ</h2>
       <p className="hy-sub">Trân trọng báo tin lễ thành hôn của</p>

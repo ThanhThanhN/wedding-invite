@@ -195,16 +195,20 @@
   align-items: center;
   gap: 8px;
   animation: fadeIn 0.8s ease;
+  padding: 0;
 }
 
 .family-card {
   width: 100%;
   max-width: 340px;
   animation: slideUp 0.6s ease;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .family-card h4 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Noto Serif', serif;
   font-size: 0.85rem;
   letter-spacing: 0.16em;
   color: #a05838;
@@ -213,6 +217,7 @@
 }
 
 .family-card p {
+  font-family: 'Noto Serif', serif;
   margin: 0 0 4px;
   color: #4a3028;
   line-height: 1.55;
@@ -226,8 +231,9 @@
 
 .family-divider {
   font-size: 1.4rem;
-  color: #d4745a;
+  color: #fff;
   padding: 4px 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 /* ===== 4. SỰ KIỆN ===== */
@@ -250,6 +256,8 @@
   box-shadow: 0 8px 32px rgba(160, 88, 56, 0.1);
   transition: all 0.3s ease;
   animation: slideUp 0.6s ease;
+  max-width: 450px;
+  margin: 0 auto;
 }
 
 .event-card:hover {
@@ -272,8 +280,8 @@
 }
 
 .event-date-big {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
+  font-family: 'Noto Serif', serif;
+  font-size: 2rem;
   font-weight: 700;
   color: #5a2e1c;
   margin: 4px 0 10px;
