@@ -80,13 +80,26 @@
 
 .cover-names {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 2px;
+  justify-content: center;
+  gap: 8px;
   margin: 0;
   font-size: 2.8rem;
   line-height: 1.15;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+.cover-names span {
+  white-space: nowrap;
+  color: #fff;
+  font-weight: 500;
+  filter: brightness(1.1);
+}
+
+.cover-names .rotating-disc {
+  flex-shrink: 0;
 }
 
 .cover-names .amp {
