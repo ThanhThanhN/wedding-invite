@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import albumBanner from '../assets/album.jpg';
 
 type Photo = {
   id: string;
@@ -22,7 +23,14 @@ export function AlbumSection({
 
   return (
     <>
-      <section className="section album-section">
+      <section className="section album-section" style={{
+        backgroundImage: `url(${albumBanner})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "scroll",
+        backgroundRepeat: "no-repeat",
+        minHeight: "auto",
+      }}>
         <h2 className="section-title script">Album Cưới</h2>
         <p className="section-sub">Những khoảnh khắc đáng nhớ của chúng mình</p>
         <div className="album-grid">

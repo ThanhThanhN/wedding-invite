@@ -6,10 +6,9 @@ import { useWishes } from "./hooks/useWishes";
 import { useRsvp } from "./hooks/useRsvp";
 import { useCountdown } from "./hooks/useUtils";
 import { CoverSection } from "./components/CoverSection";
-import { NhaCoHySection, QuoteSection } from "./components/SimplesSections";
+import { NhaCoHySection, QuoteSection, CalendarSection } from "./components/SimplesSections";
 import { FamilySection } from "./components/FamilySection";
 import { EventsSection } from "./components/EventsSection";
-import { CalendarGrid } from "./components/CalendarGrid";
 import { CountdownSection } from "./components/CountdownSection";
 import { AlbumSection } from "./components/AlbumSection";
 import { WishesSection } from "./components/WishesSection";
@@ -82,9 +81,7 @@ function App() {
       <EventsSection weddingDate={weddingData.weddingDate} />
 
       {/* SECTION 5: LỊCH */}
-      <section className="section calendar-section">
-        <CalendarGrid weddingDate={weddingData.weddingDate} />
-      </section>
+      <CalendarSection weddingDate={weddingData.weddingDate} />
 
       {/* SECTION 6: LOVE QUOTE */}
       <QuoteSection />

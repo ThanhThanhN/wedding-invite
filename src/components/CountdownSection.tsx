@@ -5,6 +5,8 @@ type Countdown = {
   seconds: number;
 };
 
+import countBanner from '../assets/count.jpg';
+
 type CountdownSectionProps = {
   countdown: Countdown;
   groomName: string;
@@ -17,7 +19,14 @@ export function CountdownSection({
   brideName,
 }: CountdownSectionProps) {
   return (
-    <section className="section countdown-section">
+    <section className="section countdown-section" style={{
+      backgroundImage: `url(${countBanner})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundAttachment: "scroll",
+      backgroundRepeat: "no-repeat",
+      minHeight: "600px",
+    }}>
       <p className="cd-label script">Save The Date</p>
       <h2 className="cd-names script">
         {groomName} &amp; {brideName}

@@ -1,5 +1,7 @@
 import { CalendarGrid } from './CalendarGrid';
 import nhacohyBanner from '../assets/nhacohybanner.jpg';
+import calenderBanner from '../assets/calender.jpg';
+import quoteBanner from '../assets/quote.jpg';
 
 export function NhaCoHySection({ groomName, brideName }: { groomName: string; brideName: string }) {
   return (
@@ -29,7 +31,14 @@ export function NhaCoHySection({ groomName, brideName }: { groomName: string; br
 
 export function QuoteSection() {
   return (
-    <section className="section quote-section">
+    <section className="section quote-section" style={{
+      backgroundImage: `url(${quoteBanner})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundAttachment: "scroll",
+      backgroundRepeat: "no-repeat",
+      minHeight: "500px",
+    }}>
       <div className="quote-box">
         <span className="quote-mark">&ldquo;</span>
         <p>
@@ -47,7 +56,16 @@ export function QuoteSection() {
 
 export function CalendarSection({ weddingDate }: { weddingDate: string }) {
   return (
-    <section className="section calendar-section">
+    <section className="calendar-section" style={{
+      backgroundImage: `url(${calenderBanner})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundAttachment: "scroll",
+      backgroundRepeat: "no-repeat",
+      minHeight: "500px",
+      paddingTop: "40px",
+      paddingBottom: "40px",
+    }}>
       <CalendarGrid weddingDate={weddingDate} />
     </section>
   );

@@ -1,4 +1,5 @@
 import type { FormEvent } from 'react';
+import { useState } from 'react';
 import { useFileToDataUrl } from '../hooks/useUtils';
 
 type WeddingData = {
@@ -6,6 +7,13 @@ type WeddingData = {
   brideName: string;
   weddingDate: string;
   bannerImage: string | null;
+};
+
+type Photo = {
+  id: string;
+  title: string;
+  src: string;
+  uploadedAt: string;
 };
 
 type AdminSectionProps = {
@@ -28,6 +36,9 @@ export function AdminSection({
   onUpdateWedding,
 }: AdminSectionProps) {
   const readAsDataUrl = useFileToDataUrl();
+  const [photoTitle, setPhotoTitle] = useState('');
+  const [photoUrl, setPhotoUrl] = useState('');
+  const [isUploadingPhoto, setIsUploadingPhoto] = useState(false);
 
   const handleBannerChange = async (e: FormEvent<HTMLInputElement>) => {
     const file = e.currentTarget.files?.[0];
@@ -35,6 +46,43 @@ export function AdminSection({
     const dataUrl = await readAsDataUrl(file);
     onUpdateWedding({ bannerImage: dataUrl });
     e.currentTarget.value = '';
+  };
+
+  const handleAddPhoto = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!photoTitle || !photoUrl) {
+      alert('Vui lòng nhập tiêu đề và URL ảnh');
+      return;
+    }
+
+    setIsUploadingPhoto(true);
+    try {
+      const newPhoto: Photo = {
+        id: `photo_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`,
+        title: photoTitle,
+        src: photoUrl,
+        uploadedAt: new Date().toISOString(),
+      };
+
+      const res = await fetch('/api/photos');
+      const data = await res.json();
+      const existingPhotos = data.data?.photos || [];
+
+      await fetch('/api/photos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ photos: [newPhoto, ...existingPhotos] }),
+      });
+
+      alert('✓ Thêm ảnh thành công!');
+      setPhotoTitle('');
+      setPhotoUrl('');
+    } catch (error) {
+      alert('❌ Lỗi khi thêm ảnh');
+      console.error(error);
+    } finally {
+      setIsUploadingPhoto(false);
+    }
   };
 
   return (
@@ -96,6 +144,29 @@ export function AdminSection({
                 onChange={handleBannerChange}
               />
             </label>
+            <hr style={{ margin: '20px 0', opacity: 0.3 }} />
+            <h3>Thêm Ảnh Album</h3>
+            <form onSubmit={handleAddPhoto} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <input
+                type="text"
+                placeholder="Tiêu đề ảnh"
+                value={photoTitle}
+                onChange={(e) => setPhotoTitle(e.target.value)}
+              />
+              <input
+                type="url"
+                placeholder="URL ảnh (ví dụ: https://...)"
+                value={photoUrl}
+                onChange={(e) => setPhotoUrl(e.target.value)}
+              />
+              <button
+                type="submit"
+                disabled={isUploadingPhoto}
+                style={{ opacity: isUploadingPhoto ? 0.5 : 1 }}
+              >
+                {isUploadingPhoto ? 'Đang thêm...' : '+ Thêm ảnh'}
+              </button>
+            </form>
           </div>
         )}
       </details>

@@ -35,7 +35,7 @@ export function EventsSection({ weddingDate }: EventsSectionProps) {
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             backgroundAttachment: "scroll",
-            minHeight: "700px",
+            minHeight: "500px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -58,7 +58,7 @@ export function EventsSection({ weddingDate }: EventsSectionProps) {
               title="Nhà trai - Cầu Ràm, Hải Phòng"
               src="https://www.google.com/maps?q=Cầu+Ràm,+Hải+Phòng&output=embed"
               width="100%"
-              height="300"
+              height="150"
               style={{ border: 0, borderRadius: "12px", marginTop: "8px" }}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -73,7 +73,7 @@ export function EventsSection({ weddingDate }: EventsSectionProps) {
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             backgroundAttachment: "scroll",
-            minHeight: "700px",
+            minHeight: "500px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -94,7 +94,7 @@ export function EventsSection({ weddingDate }: EventsSectionProps) {
               title="Nhà gái - Ao Đình làng La Cả"
               src="https://www.google.com/maps?q=Ao+Đình+làng+La+Cả&output=embed"
               width="100%"
-              height="300"
+              height="150"
               style={{ border: 0, borderRadius: "12px", marginTop: "8px" }}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
